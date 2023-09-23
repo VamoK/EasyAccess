@@ -35,10 +35,10 @@
         </nav>
         
         <h1>Groups</h1>
-        <table>
+        <table class="classList">
             <tr>
-                <td>Groups</td>
-                <td>Timetable ID</td>
+                <th>Groups</th>
+                <th>Timetable ID</th>
             </tr>
         <%
             List<Groups> allGroups = (List<Groups>) request.getAttribute("allGroups");
@@ -54,10 +54,12 @@
                 <td><%=groupID%></td>
                 <td><%=id%></td>
             </tr>
-        </table>
             
-       <%
+            <%
            }
        %>
+        </table>
+            
+       
     </body>
 </html>

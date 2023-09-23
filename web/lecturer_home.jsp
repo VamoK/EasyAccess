@@ -45,8 +45,7 @@
                 String initials = (String) session.getAttribute("initials");
             %>
             <div class="text">
-                <!--<p>WELCOME</p>-->
-                <p><b><%=initials%> <%=surname%></b><br>Lecturer</p>
+                <p>LECTURER</p>
             </div>
         </section>
     </body>

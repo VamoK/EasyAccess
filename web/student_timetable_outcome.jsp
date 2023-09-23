@@ -33,7 +33,7 @@
                         <a href="GetNotificationServlet.do" class="navLink">NOTIFICATIONS</a>
                 </li>
                 <li class="list">
-                    <a href="LogoutSservlet.do" class="navLink">LOGOUT</a>
+                    <a href="LogoutServlet.do" class="navLink">LOGOUT</a>
                 </li>
             </ul>
         </nav>
@@ -48,34 +48,32 @@
                 <th>Thursday</th>
                 <th>Friday</th>
             </tr>
-        <!--<%
+        <%
             Groups groups = (Groups) session.getAttribute("groups");
             Timetable timetable = groups.getTimetables();
-            List<Subject> subject = timetable.getModules();
+            List<Slots> slots = timetable.getSlots();
             
-            for(int i = 0 ; i < subject.size() ; i++){
+            
+            for(int i = 0 ; i < slots.size() ; i++){
                 
-                String subjects = subject.get(i).getId();
+                List<Subject> subjects = slots.get(i).getSubject();
                 
-                List<Slots> slots = subject.get(i).getSlots();
+                String subject = subjects.get(i).getId();
+                
+                
+                
+                String monday = slots.get(i).getMonday();
+                String tuesday = slots.get(i).getTuesday();
+                String wednesday = slots.get(i).getWednesday();
+                String thursday = slots.get(i).getThursday();
+                String friday = slots.get(i).getFriday();
                 
                 
         %>
         
         
             <tr>
-                <td><%=subjects%></td>
-        <%
-                for(int j = 0 ; j < slots.size() ; j++){
-                
-                
-                String monday = slots.get(j).getMonday();
-                String tuesday = slots.get(j).getTuesday();
-                String wednesday = slots.get(j).getWednesday();
-                String thursday = slots.get(j).getThursday();
-                String friday = slots.get(j).getFriday();
-        
-        %>
+                <td class="module"><%=subject%></td>
                 <td><%=monday%></td>
                 <td><%=tuesday%></td>
                 <td><%=wednesday%></td>
@@ -83,18 +81,8 @@
                 <td><%=friday%></td>
             </tr>
        <%
-           }
         }
-       %>-->
-       
-       <tr>
-           <td class="module">PPA</td>
-           <td>10:00 - 11:00 10-138</td>
-           <td>10:00 - 11:00 10-138</td>
-           <td>10:00 - 11:00 10-138</td>
-           <td>10:00 - 11:00 10-138</td>
-           <td>10:00 - 11:00 10-138</td>
-       </tr>
+       %>
 
         </table>
     </center>

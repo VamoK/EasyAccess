@@ -29,17 +29,38 @@
                         <a href="GetNotificationServlet.do" class="active">NOTIFICATIONS</a>
                 </li>
                 <li class="list">
-                    <a href="LogoutSservlet.do" class="navLink">LOGOUT</a>
+                    <a href="LogoutServlet.do" class="navLink">LOGOUT</a>
                 </li>
             </ul>
         </nav>
         
-        <div class="notifications">
+        <table class="classList">
+            <tr>
+                <th>Notifications</th> 
+            </tr>
+        
+        <%
+            List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
             
-            <div class="notificationHeader">
-                <h4>PPA</h4>
-                
-            </div> 
+            for(int i = 0 ; i < notifications.size() ; i++ ){
+                String message = notifications.get(i).getMessage();
+                String code = notifications.get(i).getModuleCode();
+            
+        %>
+        
+            <tr>
+                <td class="notSub"><%=code%></td>
+            </tr>
+            <tr>
+                <td><%=message%></td>
+            </tr>
+            
+          <%
+            }
+        %>
+        </table>
+            
+       
         </div>
     </body>
 </html>

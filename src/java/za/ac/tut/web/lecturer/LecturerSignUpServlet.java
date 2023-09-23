@@ -62,7 +62,7 @@ public class LecturerSignUpServlet extends HttpServlet {
         lfl.create(lecturer);
         
         
-        RequestDispatcher disp = request.getRequestDispatcher("lecturer_home.jsp");
+        RequestDispatcher disp = request.getRequestDispatcher("lecturer.jsp");
         disp.forward(request, response);
     }
 

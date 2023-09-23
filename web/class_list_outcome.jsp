@@ -39,15 +39,16 @@
         <%
             String groupID = (String)request.getAttribute("groupID");
             List<Student> classList = (List<Student>) request.getAttribute("classList");
+            Integer number = 0;
         %>
-        
-        <h1>CLASS LIST FOR GROUP <%=groupID%></h1>
-        
-        <table>
+                
+        <table class="classList">
             <tr>
+                <th></th>
                <th>Student Number</th>
                 <th>Name</th>
                 <th>Surname</th> 
+                <th>Group ID</th> 
             </tr>
             
             
@@ -57,13 +58,16 @@
                     Long id = classList.get(i).getId();
                     String name = classList.get(i).getName();
                     String surname = classList.get(i).getSurname();
+                    number = i + 1;
                 
             %>
             
             <tr>
+                <th><%=number%></th>
                 <td><%=id%></td>
                 <td><%=name%></td>
                 <td><%=surname%></td>
+                <td><%=groupID%></td>
             </tr>
             
             <%

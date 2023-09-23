@@ -24,9 +24,7 @@ import za.ac.tut.entities.Timetable;
  * @author Vamokuhle Khumalo
  */
 public class ModulesServlet extends HttpServlet {
-    @EJB
-    private SubjectFacadeLocal sfl;
-    
+ 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,39 +38,27 @@ public class ModulesServlet extends HttpServlet {
         String thursday = request.getParameter("thursday");
         String friday = request.getParameter("friday");
         
-        List<Slots> slotList = (List<Slots>) session.getAttribute("slotList");
-        
-        Subject module = createModule(moduleCode,monday,tuesday,wednesday,thursday,friday,slotList);
-        
-        String timetableID = (String)session.getAttribute("timetableID");
-        
+        Subject subject = new Subject(moduleCode);
         List<Subject> moduleList = (List<Subject>) session.getAttribute("moduleList");
-        moduleList.add(module);
+        moduleList.add(subject);
         
+        Slots slots = new Slots(monday, tuesday, wednesday, thursday, friday);
+        slots.setSubject(moduleList);
+        
+        List<Slots> slotList = (List<Slots>) session.getAttribute("slotList");
+        slotList.add(slots);
+        
+        String timetableID = (String) session.getAttribute("timetableID");
         Timetable timetable = new Timetable(timetableID);
-        timetable.setModules(moduleList);
-
+        timetable.setSlots(slotList);
+        
         session.setAttribute("timetable", timetable);
-        session.setAttribute("slotList", slotList);
-        session.setAttribute("module", module);
-        session.setAttribute("moduleList", moduleList);
+        
+        
         
         RequestDispatcher disp = request.getRequestDispatcher("output.jsp");
         disp.forward(request, response);
     }
 
-    private Subject createModule(String moduleCode, String monday, String tuesday, String wednesday, String thursday, String friday, List<Slots> slotList) {
-        
-        Subject module = new Subject(moduleCode);
-        
-        Slots slots = new Slots("10:00 - 11:00 10-138", "10:00 - 11:00 10-138", "10:00 - 11:00 10-138", "10:00 - 11:00 10-138", "10:00 - 11:00 10-138");
-        
-        slotList.add(slots);
-        
-        module.setSlots(slotList);
-
-        return module;
-        
-    }
 
 }

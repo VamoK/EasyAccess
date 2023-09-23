@@ -32,7 +32,18 @@
                         <a href="LogoutServlet.do" class="navLink">LOG OUT</a>
                 </li>
                 
-            </ul>
+            </ul> 
         </nav>
+        
+        
+        <!--image-->
+        <section class="section1">
+            <div class="image">
+                <img src="" alt="welcome image">
+            </div>
+            <div class="text">
+                <p>ADMINISTRATOR</p>
+            </div>
+        </section>
     </body>
 </html>
